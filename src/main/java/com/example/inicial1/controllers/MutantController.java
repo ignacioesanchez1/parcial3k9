@@ -39,8 +39,13 @@ public class MutantController {
             throw new InvalidDnaException("El arreglo de ADN no puede estar vacío");
         }
 
+        int length = dna[0].length();  // Longitud de la primera fila (número de columnas)
+        if (dna.length != length) {    // Verifica que el número de filas sea igual al número de columnas
+            throw new InvalidDnaException("La matriz debe ser de tamaño NxN");
+        }
+
         // 2. Verificar si la matriz es NxN
-        int length = dna[0].length();
+
         for (String row : dna) {
             if (row.length() != length) {
                 throw new InvalidDnaException("La matriz debe ser de tamaño NxN");
