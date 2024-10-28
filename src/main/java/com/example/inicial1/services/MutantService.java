@@ -40,7 +40,7 @@ public class MutantService {
     }
 
     // Método que contiene la lógica para detectar si es mutante
-    private boolean detectMutant(String[] dna) {
+    public boolean detectMutant(String[] dna) {
         int n = dna.length;
         int sequenceCount = 0;
 
