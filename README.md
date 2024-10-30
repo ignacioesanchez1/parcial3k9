@@ -65,8 +65,8 @@ Puede obtener estadísticas de las cadenas de ADN verificadas mediante un HTTP G
 ```
 GET → /stats
 {
-    "countMutant": 40,
-    "countHuman": 100,
+    "count_human_dna": 40,
+    "count_mutant_dna": 100,
     "ratio": 0.4
 }
 ```
