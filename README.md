@@ -1,7 +1,7 @@
 Parcial de Desarrollo de Software
 -
 
-- Alumno: Ignacio Exequiel Sánchez
+- Alumno: Ignacio Exequiel Sanchez
 - Legajo: 50163
 
 
