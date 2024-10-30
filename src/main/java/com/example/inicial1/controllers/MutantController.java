@@ -32,6 +32,12 @@ public class MutantController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @GetMapping
+    public ResponseEntity<String> getMutantInfo() {
+        return ResponseEntity.ok("El endpoint /mutant está funcionando");
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------//
 
     private void validateDna(String[] dna) {
         // 1. Verificar si el arreglo está vacío
