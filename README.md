@@ -72,6 +72,20 @@ GET → /stats
 ```
 Donde count_mutant_dna y count_human_dna representan la cantidad de análisis de ADN realizados para mutantes y humanos, respectivamente, y ratio es la relación entre ellos
 
+CODE COVERAGE
+---
+
+(insertar imagen)
+
+Cobertura General
+-
+- Cobertura de línea: El 93.8% de las líneas de código están cubiertas por pruebas. Este es un porcentaje bastante alto y sugiere una buena cobertura.
+- Cobertura de método: El 85.7% de los métodos están cubiertos por pruebas. Si bien es un buen porcentaje, podría mejorarse en algunos paquetes.
+- Cobertura de rama: El 92.9% de las ramas están cubiertas por pruebas. Esto indica que las diferentes rutas de ejecución en el código están siendo probadas de manera exhaustiva.
+- Cobertura de clase: El 87.5% de las clases están cubiertas por pruebas. Este porcentaje también es bastante bueno.
+
+En general, se cumple con el objetivo de una cobertura de código superior al 80%. La cobertura de línea, rama y clase es bastante alta, lo que indica que mi código está bien probado. Sin embargo, hay áreas específicas (como algunos métodos en ciertos paquetes) donde se podría mejorar la cobertura.
+
 CONSIDERACIONES
 -
 . Se validaron las diferentes secuencias de una matriz de DNA.
