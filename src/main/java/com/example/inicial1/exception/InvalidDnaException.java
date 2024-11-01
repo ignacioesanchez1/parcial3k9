@@ -5,3 +5,4 @@ public class InvalidDnaException extends RuntimeException {
         super(message);
     }
 }
+

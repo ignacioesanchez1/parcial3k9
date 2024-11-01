@@ -3,7 +3,6 @@ package com.example.inicial1.services;
 import com.example.inicial1.entities.DnaRecord;
 import com.example.inicial1.repositories.DnaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,7 +13,7 @@ public class MutantService {
     @Autowired
     private DnaRepository dnaRepository;
 
-    // Método principal que determina si el ADN es mutante
+    // Metodo principal que determina si el ADN es mutante
     public boolean isMutant(String[] dna) {
         // Unir el array de ADN en una sola cadena para evitar duplicados en la BD
         String dnaStr = String.join("", dna);

@@ -1,10 +1,12 @@
 package com.example.inicial1.dto;
 
 public class DnaRequest {
-
     private String[] dna;
 
-    // Getters and Setters
+    public DnaRequest(String[] dna) {
+        this.dna = dna;
+    }
+
     public String[] getDna() {
         return dna;
     }
@@ -13,3 +15,5 @@ public class DnaRequest {
         this.dna = dna;
     }
 }
+
+

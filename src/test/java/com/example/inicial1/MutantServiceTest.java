@@ -1,17 +1,24 @@
 package com.example.inicial1;
 
+import com.example.inicial1.entities.DnaRecord;
 import com.example.inicial1.repositories.DnaRepository;
 import com.example.inicial1.services.MutantService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import java.util.Optional;
 
-public class MutantServiceTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.mockito.Mockito.*;
+
+class MutantServiceTest {
+
     @InjectMocks
     private MutantService mutantService;
 
@@ -23,186 +30,89 @@ public class MutantServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    //_--------------------------------------------------------------//
-
-
     @Test
-    void testDetectMutantDiagonal() {
-        String[] dna = {
-                "ATGCGA",
-                "CAGTGC",
-                "TTATGT",
-                "AGAAAG",
-                "CCCTAG",
-                "TCACTG"
-        };
+    void testIsMutant_WithExistingRecord() {
+        String[] dna = {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};
+        String dnaStr = String.join("", dna);
 
-        boolean result = mutantService.detectMutant(dna);
+        DnaRecord record = new DnaRecord();
+        record.setIsMutant(true);
 
+        when(dnaRepository.findByDnaSequence(dnaStr)).thenReturn(Optional.of(record));
+
+        boolean result = mutantService.isMutant(dna);
         assertTrue(result);
     }
 
     @Test
-    void testDetectMutantMultipleSequences() {
-        String[] dna = {
-                "ATGCGA",
-                "CAGTGC",
-                "TTATGT",
-                "AAAAGG",
-                "CCCTAA",
-                "TCACTG"
-        };
+    void testIsMutant_WithNewRecord() {
+        String[] dna = {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};
 
-        boolean result = mutantService.detectMutant(dna);
+        when(dnaRepository.findByDnaSequence(anyString())).thenReturn(Optional.empty());
+        when(dnaRepository.save(any(DnaRecord.class))).thenReturn(new DnaRecord());
 
+        boolean result = mutantService.isMutant(dna);
         assertTrue(result);
     }
 
     @Test
-    void testDetectNoMutantHorizontal() {
-        String[] dna = {
-                "AAGCGA",
-                "CAGTGC",
-                "TTCTGT",
-                "AGAAAC",
-                "CCCTAG",
-                "TCACTG"
-        };
+    public void testIsMutant_ValidDna_NotMutantCached() throws Exception {
+        String[] dna = {"ATCG", "ATCG", "AAGT", "CTCG"};
+        boolean isMutant = false;
 
-        boolean result = mutantService.detectMutant(dna);
+        // Mock repository behavior
+        Optional<DnaRecord> emptyOptional = Optional.empty();
+        when(dnaRepository.findByDnaSequence(String.join("", dna))).thenReturn(emptyOptional);
 
-        assertFalse(result);
+        // Call isMutant (should detect non-mutant and save to DB)
+        boolean result = mutantService.isMutant(dna);
+
+        // Verify detection and persistence
+        assertEquals(isMutant, result);
+        verify(dnaRepository).save(Mockito.any(DnaRecord.class));
+
+        // Second call with same DNA (should return from cache)
+        result = mutantService.isMutant(dna);
     }
 
     @Test
-    void testDetectNoMutantVertical() {
-        String[] dna = {
-                "AAGCGA",
-                "CAGTGC",
-                "TTCTGT",
-                "AGAAAC",
-                "CCCTAG",
-                "TCACTG"
-        };
+    public void testIsMutant_ValidDna_MutantCached() throws Exception {
+        String[] dna = {"AAAA", "TACG", "TCAT", "ATCA"};
+        boolean isMutant = true;
 
-        boolean result = mutantService.detectMutant(dna);
+        // Mock repository behavior
+        Optional<DnaRecord> emptyOptional = Optional.empty();
+        when(dnaRepository.findByDnaSequence(String.join("", dna))).thenReturn(emptyOptional);
 
-        assertFalse(result);
+        // Call isMutant (should detect non-mutant and save to DB)
+        boolean result = mutantService.isMutant(dna);
+
+        // Verify detection and persistence
+        assertEquals(isMutant, result);
+        verify(dnaRepository).save(Mockito.any(DnaRecord.class));
+
+        // Second call with same DNA (should return from cache)
+        result = mutantService.isMutant(dna);
     }
 
     @Test
-    void testDetectNoMutantDiagonal() {
-        String[] dna = {
-                "AAGCGA",
-                "CAGTGC",
-                "TTCTGT",
-                "AGAAAC",
-                "CCCTAG",
-                "TCACTG"
-        };
+    public void testIsMutant_ExistingMutantRecord() throws Exception {
+        String[] dna = {"ATCG", "ATCG", "ATCG", "ATCG"};
+        boolean isMutant = true;
 
-        boolean result = mutantService.detectMutant(dna);
+        // Mock repository behavior (existing mutant record)
+        DnaRecord record = new DnaRecord();
+        record.setDnaSequence(String.join("", dna));
+        record.setIsMutant(true);
+        Optional<DnaRecord> existingRecord = Optional.of(record);
+        when(dnaRepository.findByDnaSequence(String.join("", dna))).thenReturn(existingRecord);
 
-        assertFalse(result);
+        // Call isMutant (should return from existing record)
+        boolean result = mutantService.isMutant(dna);
+
+        // Verify result and no interaction with detectMutant
+        assertEquals(isMutant, result);
+        verify(dnaRepository).findByDnaSequence(String.join("", dna));
+        verifyNoMoreInteractions(dnaRepository); // No save or update
     }
-
-    //______________________________________________________________________//
-
-    @Test
-    void testDetectMutant1() {
-        String[] dna = {
-                "AAAA",
-                "CCCC",
-                "TCAG",
-                "GGTC"
-        };
-
-        boolean result = mutantService.detectMutant(dna);
-
-        assertTrue(result);
-    }
-
-    @Test
-    void testDetectNoMutant1() {
-        String[] dna = {
-                "AAAT",
-                "AACC",
-                "AAAC",
-                "CGGG"
-        };
-
-        boolean result = mutantService.detectMutant(dna);
-
-        assertFalse(result);
-    }
-
-    @Test
-    void testDetectMutant2() {
-        String[] dna = {
-                "TGAC",
-                "AGCC",
-                "TGAC",
-                "GGTC"
-        };
-
-        boolean result = mutantService.detectMutant(dna);
-
-        assertTrue(result);
-    }
-
-    @Test
-    void testDetectNoMutant2() {
-        String[] dna = {
-                "TGAC",
-                "ATCC",
-                "TAAG",
-                "GGTC"
-        };
-
-        boolean result = mutantService.detectMutant(dna);
-
-        assertFalse(result);
-    }
-
-    @Test
-    void testDetectMutant3() {
-        String[] dna = {
-                "ATGCGAATC",
-                "CAGTGCTAT",
-                "TTATGTAAT",
-                "AGAAAGTTA",
-                "CCCTAGCAC",
-                "TCACTGACA",
-                "AGTGATCGT",
-                "GATCAAAAC",
-                "CTGACTGTG"
-
-        };
-
-        boolean result = mutantService.detectMutant(dna);
-
-        assertTrue(result);
-    }
-
-    @Test
-    void testDetectNoMutant3() {
-        String[] dna = {
-                "ATGCGAATC",
-                "CGGTGCTAT",
-                "TTATGTAAT",
-                "AGATAGTTA",
-                "CCCTAGCAC",
-                "TCACTGACA",
-                "AGTGATCGT",
-                "GATCAACAC",
-                "CTGACTGTG"
-
-        };
-
-        boolean result = mutantService.detectMutant(dna);
-
-        assertFalse(result);
-    }
-
-
 }

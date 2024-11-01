@@ -50,14 +50,19 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+	// Dependencias para pruebas
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+	testImplementation 'org.mockito:mockito-core:4.0.0'
+
 
 
 
 }
 
-tasks.named('test') {
+tasks.named("test") {
 	useJUnitPlatform()
 }
+
 
 tasks.jar {
 	enabled = true
