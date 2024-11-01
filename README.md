@@ -31,6 +31,9 @@ ATTT
 ```
 Se considera que el ADN es de un mutante si contiene más de una secuencia de 4 caracteres consecutivos idénticos (A, C, G, o T) en cualquier dirección (horizontal, vertical o diagonal). A continuación, se presenta un diagrama ilustrativo de las posibles búsquedas de secuencias en la matriz:
 
+![busqueda](https://github.com/user-attachments/assets/faf3fa9a-e64c-4ff6-9f3c-4c40a354b648)
+
+
 Búsqueda horizontal y vertical.
 Búsqueda diagonal en ambas direcciones (ascendente y descendente). Para realizar esta búsqueda, se descompone en dos variantes: una que empieza desde el borde izquierdo y otra desde el borde superior. Es importante gestionar los índices adecuadamente para evitar contar la misma secuencia dos veces.
 
