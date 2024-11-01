@@ -1,8 +1,9 @@
-Parcial de Desarrollo de Software
+Parcial de Desarrollo de Software 2024
 -
 
 - Alumno: Ignacio Exequiel Sanchez
 - Legajo: 50163
+- Comision: 3k09
 
 
 
@@ -24,15 +25,13 @@ Una matriz de ADN de ejemplo puede verse así:
 
 
 ```
-CGTG
-GTAG
-GGTT
-ATTT
+ String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"}
 ```
 Se considera que el ADN es de un mutante si contiene más de una secuencia de 4 caracteres consecutivos idénticos (A, C, G, o T) en cualquier dirección (horizontal, vertical o diagonal). A continuación, se presenta un diagrama ilustrativo de las posibles búsquedas de secuencias en la matriz:
 
-![busqueda](https://github.com/user-attachments/assets/1aff182e-4a1e-48f1-8dc1-07e7a16c794b)
-
+<div align="center">
+<img src="https://github.com/user-attachments/assets/1aff182e-4a1e-48f1-8dc1-07e7a16c794b" alt="Estrategia De Busqueda" width="500" height="500"/>
+</div>
 
 
 Búsqueda horizontal y vertical.
@@ -83,6 +82,8 @@ CODE COVERAGE
 
 
 En general, se cumple con el objetivo de una cobertura de código superior al 80%. La cobertura de línea, rama y clase es bastante alta, lo que indica que mi código está bien probado. Sin embargo, hay áreas específicas (como algunos métodos en ciertos paquetes) donde se podría mejorar la cobertura.
+
+(las explicaciones mas detalladas de cada columna se encuentra (insertar pdf))
 
 CONSIDERACIONES
 -
