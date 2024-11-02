@@ -30,7 +30,4 @@ public class DnaRecord {
     public void setIsMutant(boolean isMutant) {
         this.isMutant = isMutant;
     }
-
-
 }
-

@@ -16,7 +16,7 @@ public class MutantController {
     @Autowired
     private MutantService mutantService;
 
-    @PostMapping("/mutant")
+    @PostMapping
     public ResponseEntity<String> isMutant(@RequestBody DnaRequest dnaRequest) {
         try {
             // Verificación del ADN
@@ -28,8 +28,8 @@ public class MutantController {
             } else {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("No es un mutante"); // 403 Forbidden
             }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente más tarde\"}");
+        } catch (InvalidDnaException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
     @GetMapping
