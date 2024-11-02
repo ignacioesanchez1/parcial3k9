@@ -75,6 +75,12 @@ GET → /stats
 ```
 Donde count_mutant_dna y count_human_dna representan la cantidad de análisis de ADN realizados para mutantes y humanos, respectivamente, y ratio es la relación entre ellos
 
+SECUENCIA
+--
+POST-->MUTANT
+
+GET-->STATS
+
 CODE COVERAGE
 ---
 
