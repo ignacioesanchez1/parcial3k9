@@ -3,6 +3,11 @@ package com.example.inicial1.dto;
 public class DnaRequest {
     private String[] dna;
 
+    // Constructor por defecto necesario para la deserialización
+    public DnaRequest() {
+    }
+
+    // Constructor con parámetro
     public DnaRequest(String[] dna) {
         this.dna = dna;
     }
@@ -15,5 +20,6 @@ public class DnaRequest {
         this.dna = dna;
     }
 }
+
 
 
