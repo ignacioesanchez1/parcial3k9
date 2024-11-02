@@ -104,7 +104,7 @@ Este proyecto mantiene una cobertura de código superior al 80%, con buenos resu
 
 Diagramas de Secuencia y Pruebas de Stress (JMeter)
 -
-Se realizaron pruebas de estrés para los endpoints `/mutant` (POST) y `/stats` (GET), además de generar los correspondientes diagramas de secuencia. Los detalles de estas pruebas se encuentran en el documento adjunto (PDF), junto con una explicación de cada columna de cobertura.
+Se realizaron pruebas de estrés para los endpoints `/mutant` (POST) y `/stats` (GET), además de generar los correspondientes diagramas de secuencia. Los detalles de estas pruebas se encuentran en el documento adjunto <a href="NIVEL 3.pdf">PDF-NIVEL 3</a>, junto con una explicación de cada columna de cobertura.
 
 
 Consideraciones
