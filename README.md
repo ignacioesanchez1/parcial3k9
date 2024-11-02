@@ -1,6 +1,8 @@
 
 
-**Detección de Mutantes mediante Análisis de ADN - Parcial de Desarrollo de Software 2024**
+
+# **DETECCIÓN DE MUTANTES MEDIANTE ANÁLISIS DE ADN - PARCIAL DE DESARROLLO DE SOFTWARE 2024**
+
 
 - Alumno: Ignacio Exequiel Sanchez
 - Legajo: 50163
@@ -40,7 +42,7 @@ En este ejemplo, la matriz de ADN contiene una secuencia mutante válida, con se
 
 Endpoints de la API REST
 -
-`URL Base del Proyecto`
+**URL Base del Proyecto**
 
 LINK → https://parcialdesarrolloutn.onrender.com
 
