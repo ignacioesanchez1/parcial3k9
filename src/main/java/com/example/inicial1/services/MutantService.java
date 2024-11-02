@@ -13,7 +13,7 @@ public class MutantService {
     @Autowired
     private DnaRepository dnaRepository;
 
-    // Metodo principal que determina si el ADN es mutante
+    // Método principal que determina si el ADN es mutante
     public boolean isMutant(String[] dna) {
         // Unir el array de ADN en una sola cadena para evitar duplicados en la BD
         String dnaStr = String.join("", dna);
