@@ -7,8 +7,33 @@
 - Alumno: Ignacio Exequiel Sanchez
 - Legajo: 50163
 - Comisión: 3k09
+-------------------------------------------------------------------------------------------------
+## **Pre-requisitos**
 
+JDK (17)
 
+IntelliJ IDEA (u otro IDE de tu preferencia)
+
+Gradle (Gestor de Dependencias)
+
+H2 (Base de Datos)
+
+## **Instrucciones de ejecución?**
+
+1- Descargar el proyecto o clonarlo:
+`https://github.com/ignacioesanchez1/parcial3k9.git`
+
+2- Esperar a que se descarguen las dependencias (El IDE lo suele hacer automático)
+
+3- Ejecutar el proyecto
+
+4- Levantar la base de datos H2: `http://localhost:8080/h2-inicial1/`
+
+Probá la API con Postman o cualquier otro de tu preferencia:
+`https://parcialdesarrolloutn.onrender.com`
+- POST (guardar local): `http://localhost:8080/mutant`
+- POST (guardar render): `https://parcialdesarrolloutn.onrender.com/mutant`
+- GET (recuperar estadisticas): `https://parcialdesarrolloutn.onrender.com/stats`
 
 
 Descripción del Proyecto
